@@ -1,0 +1,30 @@
+#installing the covi19 package
+install.packages("covid19.analytics")
+
+#library to be used
+library(covid19.analytics)
+
+#loading the dataset
+aggrCovidData <-covid19.data("aggregated")
+
+
+#variables
+confirmedCases <-covid19.data ("ts-confirmed")
+globalData <-covid19.data (case = "ts-ALL")
+
+#summary
+report.summary (Nentries =5, graphical.output = T)
+
+#overall in India
+tots.per.location(confirmedCases, geo.loc = "India")
+tots.per.location(globalData, geo.loc = "India")
+
+#growth cases of India
+growth.rate(confirmedCases, geo.loc = 'India')
+
+#Comparison
+totals.plt(globalData, c("India"))
+
+#SIR Model with total population = 1,407,500,000
+generate.SIR.model(confirmedCases,'India', tot.population = 1407500000)
+
